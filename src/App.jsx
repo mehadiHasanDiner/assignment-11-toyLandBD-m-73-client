@@ -5,17 +5,15 @@ function App() {
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div >
+      <h1>Toy Land BD</h1>
+      <div>
         <button
           className="btn btn-secondary"
           onClick={() => setCount((count) => count + 1)}
         >
           count is {count}
         </button>
-        
       </div>
-     
     </>
   );
 }
