@@ -5,13 +5,13 @@ function App() {
 
   return (
     <>
-      <h1>Toy Land BD</h1>
-      <div>
+      <h1 className="font-bold text-2xl text-center my-3">Toy Land BD (Latest Website in the Country)</h1>
+      <div className="text-center">
         <button
-          className="btn btn-secondary"
+          className="btn btn-primary"
           onClick={() => setCount((count) => count + 1)}
         >
-          count is {count}
+          Number of Toys: {count}
         </button>
       </div>
     </>
