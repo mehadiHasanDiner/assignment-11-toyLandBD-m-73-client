@@ -50,7 +50,6 @@ const SignIn = () => {
               <ErrorMessage
                 errors={errors}
                 name="singleErrorInput"
-                
                 render={({ message }) => <p>{message}</p>}
               />
               <label className="label">
