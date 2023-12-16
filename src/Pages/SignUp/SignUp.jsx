@@ -14,11 +14,15 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (formData) => {
-    
     createUser(formData?.email, formData?.password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        updatedUser(loggedUser, {
+          displayName: formData.name,
+          photoURL: formData.url,
+        }).then(() => {
+          console.log("profile updated successfully");
+        }).catch;
       })
       .catch((error) => {
         // setError(error.message);

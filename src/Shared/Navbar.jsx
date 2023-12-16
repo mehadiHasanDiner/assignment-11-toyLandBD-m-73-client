@@ -33,6 +33,7 @@ const Navbar = () => {
             <button className="btn btn-sm">Sign In</button>
           </Link>
         )}
+        <p>{user && user?.displayName}</p>
       </div>
     </div>
   );

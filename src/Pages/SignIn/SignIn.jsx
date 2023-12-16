@@ -5,7 +5,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const SignIn = () => {
-  const { signedInUser } = useContext(AuthContext);
+  const { signedInUser, createUserByGoogle, updatedUser } =
+    useContext(AuthContext);
 
   const {
     register,
@@ -19,6 +20,17 @@ const SignIn = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    createUserByGoogle()
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
       })
       .catch((error) => {
         console.log(error.message);
@@ -90,7 +102,7 @@ const SignIn = () => {
           </form>
           <div className="text-center mb-2 form-control px-8 pb-5">
             <button
-              // onClick={handleGoogleLogin}
+              onClick={handleGoogleLogin}
               className="btn btn-neutral capitalize text-md"
             >
               <FcGoogle className="text-2xl" /> Sign In with Google
