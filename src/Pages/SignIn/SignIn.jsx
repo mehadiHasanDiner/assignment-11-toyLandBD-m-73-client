@@ -1,8 +1,12 @@
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const SignIn = () => {
+  const { signedInUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -10,8 +14,16 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (formData) => console.log(formData);
-
+  const onSubmit = (formData) => {
+    signedInUser(formData?.email, formData?.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <div className="-mt-8 bg">
@@ -62,7 +74,6 @@ const SignIn = () => {
                 Sign in
               </button>
             </div>
-          
 
             <label className="label">
               <span>

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className=" shadow-xl py-2 flex justify-between items-center md:px-24 lg:px-8 ">
       <div>
@@ -11,10 +13,13 @@ const Navbar = () => {
         <Link className="mr-4" to="/">
           Home
         </Link>
-
-        <Link to="/signIn">
-          <button className="btn btn-sm">Sign In</button>
-        </Link>
+        {user ? (
+          <button className="btn btn-sm">Sign Out</button>
+        ) : (
+          <Link to="/signIn">
+            <button className="btn btn-sm">Sign In</button>
+          </Link>
+        )}
       </div>
     </div>
   );

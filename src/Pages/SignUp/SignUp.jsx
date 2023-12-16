@@ -1,16 +1,30 @@
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../provider/AuthProvider";
+import { useContext } from "react";
 
 const SignUp = () => {
+  const { createUser, updatedUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (formData) => console.log(formData);
+  const onSubmit = (formData) => {
+    
+    createUser(formData?.email, formData?.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        // setError(error.message);
+        console.log(error.message);
+      });
+  };
 
   return (
     <div className="-mt-8 bg">
