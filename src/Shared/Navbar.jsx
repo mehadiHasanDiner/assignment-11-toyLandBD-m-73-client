@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
 
   const handleSignOut = () => {
     logOut()
@@ -33,7 +33,11 @@ const Navbar = () => {
             <button className="btn btn-sm">Sign In</button>
           </Link>
         )}
-        <p>{user && user?.displayName}</p>
+        {loading ? (
+          <span className="loading loading-bars loading-lg"></span>
+        ) : (
+          <p>{user && user?.displayName}</p>
+        )}
       </div>
     </div>
   );
