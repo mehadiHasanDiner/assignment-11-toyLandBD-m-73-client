@@ -3,7 +3,18 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className=" shadow-xl py-2 flex justify-between items-center md:px-24 lg:px-8 ">
       <div>
@@ -14,7 +25,9 @@ const Navbar = () => {
           Home
         </Link>
         {user ? (
-          <button className="btn btn-sm">Sign Out</button>
+          <button onClick={handleSignOut} className="btn btn-sm">
+            Sign Out
+          </button>
         ) : (
           <Link to="/signIn">
             <button className="btn btn-sm">Sign In</button>
