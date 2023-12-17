@@ -1,9 +1,18 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut, loading } = useContext(AuthContext);
+
+  const active = {
+    color: "orange",
+    fontWeight: "bold",
+  };
+
+  const inactive = {
+    color: "black",
+  };
 
   const handleSignOut = () => {
     logOut()
@@ -18,26 +27,67 @@ const Navbar = () => {
   return (
     <div className=" shadow-xl py-2 flex justify-between items-center md:px-24 lg:px-8 ">
       <div>
-        <h1 className="text-2xl font-bold ">Toy Land BD</h1>
+        <h1 className="text-2xl font-bold ">
+          <Link to="/">Toy Land BD</Link>
+        </h1>
       </div>
-      <div>
-        <Link className="mr-4" to="/">
+      <div className="flex items-center">
+        <NavLink
+          className="mr-4"
+          style={({ isActive }) => (isActive ? active : inactive)}
+          to="/"
+        >
           Home
-        </Link>
+        </NavLink>
+        <NavLink
+          className="mr-4"
+          style={({ isActive }) => (isActive ? active : inactive)}
+          to="/allToys"
+        >
+          All Toys
+        </NavLink>
+        
+        <NavLink
+          className="mr-4"
+          style={({ isActive }) => (isActive ? active : inactive)}
+          to="/blogs"
+        >
+          Blogs
+        </NavLink>
+
         {user ? (
-          <button onClick={handleSignOut} className="btn btn-sm">
-            Sign Out
-          </button>
+          <div>
+            <NavLink
+              className="mr-4"
+              style={({ isActive }) => (isActive ? active : inactive)}
+              to="/myToys"
+            >
+              My Toys
+            </NavLink>
+            <NavLink
+              className="mr-4"
+              style={({ isActive }) => (isActive ? active : inactive)}
+              to="/addAToy"
+            >
+              Add a Toy
+            </NavLink>
+            <button onClick={handleSignOut} className="btn btn-sm">
+              Sign Out
+            </button>
+          </div>
         ) : (
-          <Link to="/signIn">
+          <NavLink
+            to="/signIn"
+            style={({ isActive }) => (isActive ? active : inactive)}
+          >
             <button className="btn btn-sm">Sign In</button>
-          </Link>
+          </NavLink>
         )}
-        {loading ? (
+        {/* {loading ? (
           <span className="loading loading-bars loading-lg"></span>
         ) : (
-          <p>{user && user?.displayName}</p>
-        )}
+          <div>{user && user?.displayName}</div>
+        )} */}
       </div>
     </div>
   );
