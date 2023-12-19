@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Super Robot Action Figure",
+        "price": 19.99,
+        "image": "https://i.ibb.co/vDjXrGm/Super-Robot-Action-Figure.jpg",
+        "rating": 4.5,
+        "category": "Action Figures"
+    },
+    {
+        "name": "Colorful Building Blocks Set",
+        "price": 29.99,
+        "image": "https://i.ibb.co/yfztqj7/Colorful-Building-Blocks-Set.jpg",
+        "rating": 4.2,
+        "category": "Building Toys"
+    },
+    {
+        "name": "Plush Stuffed Animal - Teddy Bear",
+        "price": 14.99,
+        "image": "https://i.ibb.co/Rg1T1SB/Plush-Stuffed-Animal-Teddy-Bear.jpg",
+        "rating": 4.7,
+        "category": "Plush Toys"
+    },
+    {
+        "name": "Educational ABC Alphabet Puzzle",
+        "price": 22.99,
+        "image": "https://i.ibb.co/RzBSZXh/Educational-ABC-Alphabet-Puzzle.jpg",
+        "rating": 4.0,
+        "category": "Action Figures"
+    },
+    {
+        "name": "Remote Control Racing Car",
+        "price": 34.99,
+        "image": "https://i.ibb.co/hLt0VMC/Remote-Control-Racing-Car.jpg",
+        "rating": 4.8,
+        "category": "Building Toys"
+    },
+    {
+        "name": "Dollhouse Playset with Furniture",
+        "price": 49.99,
+        "image": "https://i.ibb.co/tZZcLB4/Dollhouse-Playset-with-Furniture.jpg",
+        "rating": 4.6,
+        "category": "Plush Toys"
+    },
+    {
+        "name": "Outdoor Sports Ball Set",
+        "price": 19.99,
+        "image": "https://i.ibb.co/wYSTKD7/Outdoor-Sports-Ball-Set.jpg",
+        "rating": 4.3,
+        "category": "Action Figures"
+    },
+    {
+        "name": "Science Experiment Kit",
+        "price": 27.99,
+        "image": "https://i.ibb.co/z448H6L/Science-Experiment-Kit.jpg",
+        "rating": 4.4,
+        "category": "Building Toys"
+    },
+    {
+        "name": "Musical Instrument Set - Mini Orchestra",
+        "price": 39.99,
+        "image": "https://i.ibb.co/TWY6zZ3/Musical-Instrument-Set-Mini-Orchestra.jpg",
+        "rating": 4.5,
+        "category": "Plush Toys"
+    }
+]
