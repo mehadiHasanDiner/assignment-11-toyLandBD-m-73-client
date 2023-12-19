@@ -2,14 +2,51 @@ import { useEffect, useState } from "react";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
+  const [toysTab, setToysTab] = useState([1]);
   useEffect(() => {
     fetch("toys.json")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
+  const actionToys = categories.filter((c) => c.category === "Action Figures");
+  const buildingToys = categories.filter(
+    (action) => action.category === "Building Toys"
+  );
+  const plushToys = categories.filter((c) => c.category === "Plush Toys");
+
+  const activeTab = (index) => {
+    setToysTab(index);
+  };
+
+  console.log(plushToys);
   return (
     <div>
-      <p>this is my toy category: {categories.length} </p>
+      <div role="tablist" className="tabs tabs-lifted tabs-lg">
+        <div
+          onClick={() => activeTab(1)}
+          role="tab"
+          className={toysTab === 1 ? "tab tab-active" : "tab"}
+        >
+          Action Figures
+        <div>
+         
+        </div>
+        </div>
+        <div
+          onClick={() => activeTab(2)}
+          role="tab"
+          className={toysTab === 2 ? "tab tab-active" : "tab"}
+        >
+          Building Toys
+        </div>
+        <div
+          onClick={() => activeTab(3)}
+          role="tab"
+          className={toysTab === 3 ? "tab tab-active" : "tab"}
+        >
+          Plush Toys
+        </div>
+      </div>
     </div>
   );
 };
