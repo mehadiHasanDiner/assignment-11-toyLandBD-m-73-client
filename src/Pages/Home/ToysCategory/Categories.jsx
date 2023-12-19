@@ -5,11 +5,11 @@ const Categories = () => {
   useEffect(() => {
     fetch("toys.json")
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setCategories(data));
   }, []);
   return (
     <div>
-      <p>this is my toy category</p>
+      <p>this is my toy category: {categories.length} </p>
     </div>
   );
 };
