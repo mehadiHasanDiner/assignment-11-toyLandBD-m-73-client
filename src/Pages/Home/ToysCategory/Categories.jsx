@@ -18,7 +18,16 @@ const Categories = () => {
     setToysTab(index);
   };
 
-  console.log(plushToys);
+  const allCategories =
+    toysTab === 1
+      ? actionToys
+      : toysTab === 2
+      ? buildingToys
+      : toysTab === 3
+      ? plushToys
+      : "";
+  console.log(allCategories);
+
   return (
     <div>
       <div role="tablist" className="tabs tabs-lifted tabs-lg">
@@ -28,9 +37,7 @@ const Categories = () => {
           className={toysTab === 1 ? "tab tab-active" : "tab"}
         >
           Action Figures
-        <div>
-         
-        </div>
+          <div></div>
         </div>
         <div
           onClick={() => activeTab(2)}
