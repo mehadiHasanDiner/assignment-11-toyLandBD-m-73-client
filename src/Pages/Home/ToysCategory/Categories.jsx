@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import CategoryCard from "./CategoryCard";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [toysTab, setToysTab] = useState([1]);
   useEffect(() => {
-    fetch("toys.json")
+    fetch("http://localhost:5000/categories")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
@@ -19,22 +20,27 @@ const Categories = () => {
   };
 
   const allCategories =
-    toysTab === 1
+    toysTab == 1
       ? actionToys
-      : toysTab === 2
+      : toysTab == 2
       ? buildingToys
-      : toysTab === 3
+      : toysTab == 3
       ? plushToys
       : "";
   console.log(allCategories);
 
   return (
     <div>
-      <div role="tablist" className="tabs tabs-lifted tabs-lg">
+      <div
+        role="tablist"
+        className="tabs tabs-lifted tabs-lg bg-orange-400 relative z-20 rounded-t-xl "
+      >
         <div
           onClick={() => activeTab(1)}
           role="tab"
-          className={toysTab === 1 ? "tab tab-active" : "tab"}
+          className={
+            toysTab == 1 ? "tab tab-active  text-orange-400 font-bold" : "tab "
+          }
         >
           Action Figures
           <div></div>
@@ -42,17 +48,29 @@ const Categories = () => {
         <div
           onClick={() => activeTab(2)}
           role="tab"
-          className={toysTab === 2 ? "tab tab-active" : "tab"}
+          className={
+            toysTab == 2 ? "tab tab-active  text-orange-400 font-bold" : "tab"
+          }
         >
           Building Toys
         </div>
         <div
           onClick={() => activeTab(3)}
           role="tab"
-          className={toysTab === 3 ? "tab tab-active" : "tab"}
+          className={
+            toysTab == 3 ? "tab tab-active  text-orange-400 font-bold" : "tab "
+          }
         >
           Plush Toys
         </div>
+      </div>
+      <div className="toy-container border-2 border-gray-300 p-4 rounded-lg relative -top-3">
+        {allCategories.map((categories) => (
+          <CategoryCard
+            key={categories._id}
+            categories={categories}
+          ></CategoryCard>
+        ))}
       </div>
     </div>
   );
