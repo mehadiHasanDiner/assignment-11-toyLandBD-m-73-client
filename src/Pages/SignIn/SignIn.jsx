@@ -1,12 +1,16 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const SignIn = () => {
-  const { signedInUser, createUserByGoogle, updatedUser } =
-    useContext(AuthContext);
+  const { signedInUser, createUserByGoogle } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -20,6 +24,7 @@ const SignIn = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -35,6 +40,7 @@ const SignIn = () => {
       .catch((error) => {
         console.log(error.message);
       });
+    navigate(from, { replace: true });
   };
 
   return (
