@@ -3,7 +3,7 @@ import CategoryCard from "./CategoryCard";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const [toysTab, setToysTab] = useState([1]);
+  const [toysTab, setToysTab] = useState(["tab1"]);
   useEffect(() => {
     fetch("http://localhost:5000/categories")
       .then((res) => res.json())
@@ -15,56 +15,62 @@ const Categories = () => {
   );
   const plushToys = categories.filter((c) => c.category === "Plush Toys");
 
-  const activeTab = (index) => {
-    setToysTab(index);
+  const activeTab = (activeTab) => {
+    setToysTab(activeTab);
   };
 
   const allCategories =
-    toysTab == 1
+    toysTab == "tab1"
       ? actionToys
-      : toysTab == 2
+      : toysTab == "tab2"
       ? buildingToys
-      : toysTab == 3
+      : toysTab == "tab3"
       ? plushToys
       : "";
-  console.log(allCategories);
+  // console.log(allCategories);
 
   return (
     <div>
       <div
         role="tablist"
-        className="tabs tabs-lifted tabs-lg bg-orange-400 relative z-20 rounded-t-xl "
+        className="tabs  tabs-lifted tabs-lg bg-orange-400 relative z-20 rounded-t-xl "
       >
         <div
-          onClick={() => activeTab(1)}
+          onClick={() => activeTab("tab1")}
           role="tab"
           className={
-            toysTab == 1 ? "tab tab-active  text-orange-400 font-bold" : "tab "
+            toysTab == "tab1"
+              ? "tab tab-active  text-orange-400 font-bold"
+              : "tab "
           }
         >
           Action Figures
           <div></div>
         </div>
         <div
-          onClick={() => activeTab(2)}
+          onClick={() => activeTab("tab2")}
           role="tab"
           className={
-            toysTab == 2 ? "tab tab-active  text-orange-400 font-bold" : "tab"
+            toysTab == "tab2"
+              ? "tab tab-active  text-orange-400 font-bold"
+              : "tab"
           }
         >
           Building Toys
         </div>
         <div
-          onClick={() => activeTab(3)}
+          onClick={() => activeTab("tab3")}
           role="tab"
           className={
-            toysTab == 3 ? "tab tab-active  text-orange-400 font-bold" : "tab "
+            toysTab == "tab3"
+              ? "tab tab-active  text-orange-400 font-bold"
+              : "tab "
           }
         >
           Plush Toys
         </div>
       </div>
-      <div className="toy-container border-2 border-gray-300 p-4 rounded-lg relative -top-3">
+      <div className="toy-container  bg-orange-400 p-4 rounded-lg relative -top-3">
         {allCategories.map((categories) => (
           <CategoryCard
             key={categories._id}
