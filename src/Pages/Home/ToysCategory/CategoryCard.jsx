@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const CategoryCard = ({ categories }) => {
-  const { _id, name, price, image, rating, category } = categories;
+  const { _id, name, price, image, rating, category, description } = categories;
   return (
     <div>
       <div className="card w-full bg-base-100 shadow-xl">

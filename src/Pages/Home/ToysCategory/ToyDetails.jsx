@@ -15,6 +15,7 @@ const ToyDetails = () => {
         <div>
           <h1 className="text-5xl font-bold">{toy?.name}</h1>
           <p className="py-6">Price: ${toy?.price}</p>
+          <p className="pb-4">Description: ${toy?.description}</p>
           <button onClick={handleGoBack} className="btn btn-warning">
             Back to Home
           </button>
