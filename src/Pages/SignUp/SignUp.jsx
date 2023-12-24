@@ -49,7 +49,7 @@ const SignUp = () => {
                 placeholder="Name"
                 className="input input-bordered"
               />
-              {errors.email && (
+              {errors.name && (
                 <p className="text-red-600 mt-1">Please check the Name.</p>
               )}
             </div>

@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
 import Banner from "../../Shared/Banner";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const AddAToy = () => {
+  const { user } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -20,11 +23,42 @@ const AddAToy = () => {
         {" "}
         Submit your toy's details{" "}
       </p>
-      <div className="card  w-full shadow-2xl bg-base-200 border-2 border-gray-400">
+      <div className="card  w-full shadow-2xl bg-base-200 border-2 border-orange-400">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body -mb-6">
           <div className="form-control">
             <label className="label">
-              <span className="label-text font-bold">Name</span>
+              <span className="label-text font-bold">Toy's Name</span>
+            </label>
+            <input
+              {...register("toyName", {
+                required: true,
+              })}
+              type="text"
+              placeholder="Toy's Name"
+              className="input input-bordered"
+            />
+            {errors.toyName && (
+              <p className="text-red-600 mt-1">Please check the toy name.</p>
+            )}
+          </div>
+
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-bold">Toy image URL</span>
+            </label>
+            <input
+              {...register("url", { required: true })}
+              type="url"
+              placeholder="Toy Image Url"
+              className="input input-bordered"
+            />
+            {errors.url && (
+              <p className="text-red-600 mt-1">Please check the toy image.</p>
+            )}
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-bold"> Seller Name</span>
             </label>
             <input
               {...register("name", {
@@ -33,6 +67,7 @@ const AddAToy = () => {
               type="text"
               placeholder="Name"
               className="input input-bordered"
+              defaultValue={user?.displayName}
             />
             {errors.email && (
               <p className="text-red-600 mt-1">Please check the Name.</p>
@@ -40,7 +75,7 @@ const AddAToy = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text font-bold">Email</span>
+              <span className="label-text font-bold">Seller Email</span>
             </label>
             <input
               {...register("email", {
@@ -49,59 +84,49 @@ const AddAToy = () => {
               type="email"
               placeholder="email"
               className="input input-bordered"
+              defaultValue={user.email}
             />
             {errors.email && (
               <p className="text-red-600 mt-1">Please check the Email.</p>
             )}
           </div>
+
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text font-bold">Seller Email</span>
             </label>
-            <input
-              {...register("password", { required: true })}
-              type="password"
-              placeholder="password"
+
+            <select
+              className="text-input input-bordered"
+              {...register("category")}
+            >
+              <option value="Engineering">engineering</option>
+              <option value="Editor">Editor</option>
+              <option value="writer">Writer</option>
+              <option value="Developer">Developer</option>
+            </select>
+
+            {/* <input
+              {...register("email", {
+                required: true,
+              })}
+              type="email"
+              placeholder="email"
               className="input input-bordered"
-            />
-            {errors.password && (
-              <p className="text-red-600 mt-1">Please check the Password.</p>
+              defaultValue={user.email}
+            /> */}
+            {errors.email && (
+              <p className="text-red-600 mt-1">Please check the Email.</p>
             )}
           </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Photo URL</span>
-            </label>
-            <input
-              {...register("url", { required: true })}
-              type="url"
-              placeholder="Photo Url"
-              className="input input-bordered"
-            />
-            {/* {errors.password && (
-                <p className="text-red-600 mt-1">Please check the Password.</p>
-              )}             */}
-          </div>
+
           <span className="text-warning text-center"></span>
           <div className="form-control">
-            <button className="btn btn-active capitalize text-lg">
-              Sign Up
+            <button className="btn btn-warning text-lg mb-6 mt-2">
+              Submit
             </button>
           </div>
           {/* <span className="text-success text-center"> success</span> */}
-
-          <label className="label">
-            <span>
-              Already have an account?
-              <Link
-                to="/signIn"
-                className="text-center label-text-alt link link-hover hover:font-bold text-lg text-pink-700"
-              >
-                {" "}
-                Sign In!
-              </Link>
-            </span>
-          </label>
         </form>
       </div>
     </div>
