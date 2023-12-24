@@ -1,10 +1,14 @@
 import { useForm } from "react-hook-form";
 import Banner from "../../Shared/Banner";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import { FaStar } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AddAToy = () => {
   const { user } = useContext(AuthContext);
+  const [rating, setRating] = useState(null);
+  const [ratedColor, setRatedColor] = useState(null);
 
   const {
     register,
@@ -14,7 +18,21 @@ const AddAToy = () => {
   } = useForm();
 
   const onSubmit = (formData) => {
-    console.log(formData);
+    fetch("http://localhost:5000/toys", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
+    // insertedId:
+    Swal.fire({
+      title: "Good job!",
+      text: "Your toy's data submitted successfully!",
+      icon: "success",
+    });
   };
   return (
     <div>
@@ -25,6 +43,7 @@ const AddAToy = () => {
       </p>
       <div className="card  w-full shadow-2xl bg-base-200 border-2 border-orange-400">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body -mb-6">
+          {/* Toy Name */}
           <div className="form-control">
             <label className="label">
               <span className="label-text font-bold">Toy's Name</span>
@@ -42,6 +61,7 @@ const AddAToy = () => {
             )}
           </div>
 
+          {/* Toy image url */}
           <div className="form-control">
             <label className="label">
               <span className="label-text font-bold">Toy image URL</span>
@@ -56,6 +76,8 @@ const AddAToy = () => {
               <p className="text-red-600 mt-1">Please check the toy image.</p>
             )}
           </div>
+
+          {/* Seller Name */}
           <div className="form-control">
             <label className="label">
               <span className="label-text font-bold"> Seller Name</span>
@@ -73,6 +95,8 @@ const AddAToy = () => {
               <p className="text-red-600 mt-1">Please check the Name.</p>
             )}
           </div>
+
+          {/* Seller Email */}
           <div className="form-control">
             <label className="label">
               <span className="label-text font-bold">Seller Email</span>
@@ -91,32 +115,105 @@ const AddAToy = () => {
             )}
           </div>
 
+          {/* Category */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text font-bold">Seller Email</span>
+              <span className="label-text font-bold">Toy Category</span>
             </label>
 
             <select
-              className="text-input input-bordered"
+              className="select select-bordered"
               {...register("category")}
             >
-              <option value="Engineering">engineering</option>
-              <option value="Editor">Editor</option>
-              <option value="writer">Writer</option>
-              <option value="Developer">Developer</option>
+              <option value="Action Figures">Action Figures</option>
+              <option value="Building Toys">Building Toys</option>
+              <option value="writer">Plush Toys</option>
             </select>
+            {errors.category && (
+              <p className="text-red-600 mt-1">Please check the Email.</p>
+            )}
+          </div>
 
-            {/* <input
-              {...register("email", {
+          {/* Rating */}
+          <div className="form-control ">
+            <label className="label">
+              {/* <span className="label-text font-bold">Rating</span> */}
+            </label>
+            <div className="flex items-center">
+              <span className="text-md mr-2 font-semibold">
+                {" "}
+                Rating: {rating}
+              </span>
+
+              {[...Array(5)].map((star, index) => {
+                const currentRating = index + 1;
+                return (
+                  <label key={index}>
+                    <input
+                      className="hidden"
+                      {...register("rating", {
+                        required: true,
+                      })}
+                      type="radio"
+                      value={currentRating}
+                      onClick={() => setRating(currentRating)}
+                    />
+                    <FaStar
+                      className="cursor-pointer"
+                      size={20}
+                      color={
+                        currentRating <= (ratedColor || rating)
+                          ? "orange"
+                          : "gray"
+                      }
+                      onMouseEnter={() => setRatedColor(currentRating)}
+                      onMouseLeave={() => setRatedColor(null)}
+                    />
+                  </label>
+                );
+              })}
+            </div>
+            {errors.rating && (
+              <p className="text-red-600 mt-1">Please check the Rating.</p>
+            )}
+          </div>
+
+          {/* quantity */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-bold">
+                Toy's available quantity
+              </span>
+            </label>
+            <input
+              {...register("quantity", {
                 required: true,
               })}
-              type="email"
-              placeholder="email"
+              type="number"
+              placeholder="available quantity"
               className="input input-bordered"
               defaultValue={user.email}
-            /> */}
-            {errors.email && (
-              <p className="text-red-600 mt-1">Please check the Email.</p>
+            />
+            {errors.quantity && (
+              <p className="text-red-600 mt-1">Please check the quantity.</p>
+            )}
+          </div>
+
+          {/* Item Details */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-bold">Toy's Details</span>
+            </label>
+            <textarea
+              {...register("description", {
+                required: true,
+              })}
+              type="text"
+              placeholder="description"
+              className="textarea "
+            />
+            {errors.description && (
+              <p className="text-red-600 mt-1">Please check the description.</p>
             )}
           </div>
 
@@ -126,6 +223,7 @@ const AddAToy = () => {
               Submit
             </button>
           </div>
+
           {/* <span className="text-success text-center"> success</span> */}
         </form>
       </div>
