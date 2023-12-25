@@ -20,20 +20,24 @@ const AddAToy = () => {
   const onSubmit = (formData) => {
     fetch("http://localhost:5000/toys", {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+      },
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Good job!",
+            text: "Your toy's data submitted successfully!",
+            icon: "success",
+          });
+        }
       });
-    // insertedId:
-    Swal.fire({
-      title: "Good job!",
-      text: "Your toy's data submitted successfully!",
-      icon: "success",
-    });
   };
+
   return (
     <div>
       <Banner>Add a Toy</Banner>
@@ -83,16 +87,16 @@ const AddAToy = () => {
               <span className="label-text font-bold"> Seller Name</span>
             </label>
             <input
-              {...register("name", {
+              {...register("sellerName", {
                 required: true,
               })}
               type="text"
-              placeholder="Name"
+              placeholder="Seller Name"
               className="input input-bordered"
               defaultValue={user?.displayName}
             />
-            {errors.email && (
-              <p className="text-red-600 mt-1">Please check the Name.</p>
+            {errors.sellerName && (
+              <p className="text-red-600 mt-1">Please check the Seller Name.</p>
             )}
           </div>
 
@@ -102,7 +106,7 @@ const AddAToy = () => {
               <span className="label-text font-bold">Seller Email</span>
             </label>
             <input
-              {...register("email", {
+              {...register("postedBy", {
                 required: true,
               })}
               type="email"
@@ -110,7 +114,7 @@ const AddAToy = () => {
               className="input input-bordered"
               defaultValue={user.email}
             />
-            {errors.email && (
+            {errors.postedBy && (
               <p className="text-red-600 mt-1">Please check the Email.</p>
             )}
           </div>
@@ -131,6 +135,24 @@ const AddAToy = () => {
             </select>
             {errors.category && (
               <p className="text-red-600 mt-1">Please check the Email.</p>
+            )}
+          </div>
+
+          {/* price */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-bold">Toy Price ($)</span>
+            </label>
+            <input
+              {...register("price", {
+                required: true,
+              })}
+              type="number"
+              placeholder="toy price"
+              className="input input-bordered"
+            />
+            {errors.price && (
+              <p className="text-red-600 mt-1">Please check the quantity.</p>
             )}
           </div>
 
@@ -192,7 +214,6 @@ const AddAToy = () => {
               type="number"
               placeholder="available quantity"
               className="input input-bordered"
-              defaultValue={user.email}
             />
             {errors.quantity && (
               <p className="text-red-600 mt-1">Please check the quantity.</p>
@@ -210,7 +231,7 @@ const AddAToy = () => {
               })}
               type="text"
               placeholder="description"
-              className="textarea "
+              className="textarea"
             />
             {errors.description && (
               <p className="text-red-600 mt-1">Please check the description.</p>
