@@ -1,11 +1,21 @@
 import React from "react";
 import BannerSingleToy from "../../Shared/BannerSingleToy";
 import { useLoaderData } from "react-router-dom";
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 
 const SingleToy = () => {
   const singleToyData = useLoaderData();
-  const { sellerName, toyName, description, price, quantity, postedBy, url } =
-    singleToyData || {};
+  const {
+    sellerName,
+    toyName,
+    description,
+    price,
+    quantity,
+    postedBy,
+    url,
+    rating,
+  } = singleToyData || {};
   return (
     <div>
       <BannerSingleToy>{singleToyData.toyName.slice(0, 30)}</BannerSingleToy>
@@ -31,8 +41,12 @@ const SingleToy = () => {
           <p>
             <strong>Description: </strong> {description}
           </p>
-          <div className="card-actions justify-end">
+          {/* <div className="card-actions justify-end">
             <button className="btn btn-primary">Buy</button>
+          </div> */}
+          <div className="text-lg flex items-center ">
+            <Rating style={{ maxWidth: 110 }} value={rating} readOnly />
+            <span className="ml-2">{rating}</span>
           </div>
         </div>
       </div>

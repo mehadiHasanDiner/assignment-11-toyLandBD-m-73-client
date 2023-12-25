@@ -8,18 +8,19 @@ const AllToys = () => {
   return (
     <div>
       <Banner>All Toy Page</Banner>
-      <p className="text-center text-2xl"> All toys page</p>
+      
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mt-6 border-2 rounded-lg">
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-base-200">
               <th>SL</th>
               <th>Toy's Details</th>
               <th>Seller Name & Email</th>
               <th>Category</th>
               <th>Price</th>
+              <th></th>
             </tr>
           </thead>
 
