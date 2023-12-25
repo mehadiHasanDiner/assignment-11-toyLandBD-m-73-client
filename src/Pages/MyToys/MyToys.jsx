@@ -1,11 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
-import { Rating } from "@smastrom/react-rating";
-import "@smastrom/react-rating/style.css";
-import { FaEdit } from "react-icons/fa";
-import { MdDeleteOutline } from "react-icons/md";
-import UpdateMyToy from "./UpdateMyToy";
-import { Link } from "react-router-dom";
+import MyToyRow from "./MyToyRow";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -18,7 +13,7 @@ const MyToys = () => {
         // console.log(data);
         setMyToys(data);
       });
-  }, []);
+  }, [user]);
 
   return (
     <div className="overflow-x-auto mt-6 border-2 rounded-lg">
@@ -37,54 +32,7 @@ const MyToys = () => {
 
         <tbody className="bg-orange-100">
           {myToys?.map((toy, index) => (
-            <tr key={toy._id}>
-              <th>{index + 1}</th>
-              <td>
-                <div className="flex items-center gap-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-16 h-28">
-                      <img src={toy.url} alt={toy.toyName} />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">{toy.toyName}</div>
-                    <div className="text-sm opacity-50">
-                      Quantity: {toy.quantity}
-                    </div>
-                    <div className="flex">
-                      <Rating
-                        style={{ maxWidth: 80 }}
-                        value={toy.rating}
-                        readOnly
-                      />
-                      <span className="ml-2">{toy.rating}</span>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                {toy.sellerName}
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  {toy.postedBy}
-                </span>
-              </td>
-              <td>{toy.category}</td>
-              <td>${toy.price}</td>
-              <th>
-                <Link
-                  to={`/updateToy/${toy?._id}`}
-                  htmlFor="my_modal_6"
-                  className="btn btn-sm bg-green-400"
-                >
-                  <FaEdit />
-                </Link>
-
-                <button className="btn btn-sm bg-orange-500">
-                  <MdDeleteOutline />
-                </button>
-              </th>
-            </tr>
+            <MyToyRow toy={toy} index={index} key={toy._id}></MyToyRow>
           ))}
         </tbody>
       </table>
