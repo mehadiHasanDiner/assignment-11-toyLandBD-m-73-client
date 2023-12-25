@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AllToysRow = ({ toyData, index }) => {
     // let i = 0;
@@ -30,7 +31,9 @@ const AllToysRow = ({ toyData, index }) => {
         <td>{category}</td>
         <td>${price}</td>
         <th>
-          <button className="btn btn-xs">Details</button>
+          <Link to={`/toys/${_id}`}>
+            <button className="btn btn-xs">Details</button>
+          </Link>
         </th>
       </tr>
     </>
