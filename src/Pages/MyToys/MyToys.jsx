@@ -4,6 +4,8 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import UpdateMyToy from "./UpdateMyToy";
+import { Link } from "react-router-dom";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +15,7 @@ const MyToys = () => {
     fetch(`http://localhost:5000/myToys/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setMyToys(data);
       });
   }, []);
@@ -35,7 +37,7 @@ const MyToys = () => {
 
         <tbody className="bg-orange-100">
           {myToys?.map((toy, index) => (
-            <tr key={index}>
+            <tr key={toy._id}>
               <th>{index + 1}</th>
               <td>
                 <div className="flex items-center gap-3">
@@ -70,10 +72,15 @@ const MyToys = () => {
               <td>{toy.category}</td>
               <td>${toy.price}</td>
               <th>
-                <button className="btn btn-sm bg-green-400 mr-2">
+                <Link
+                  to={`/updateToy/${toy?._id}`}
+                  htmlFor="my_modal_6"
+                  className="btn btn-sm bg-green-400"
+                >
                   <FaEdit />
-                </button>
-                <button className="btn btn-sm bg-orange-600">
+                </Link>
+
+                <button className="btn btn-sm bg-orange-500">
                   <MdDeleteOutline />
                 </button>
               </th>
