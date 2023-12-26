@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import { MdLogout } from "react-icons/md";
 
 const Navbar = () => {
   const { user, logOut, loading } = useContext(AuthContext);
@@ -46,7 +47,7 @@ const Navbar = () => {
         >
           All Toys
         </NavLink>
-        
+
         <NavLink
           className="mr-4"
           style={({ isActive }) => (isActive ? active : inactive)}
@@ -56,7 +57,7 @@ const Navbar = () => {
         </NavLink>
 
         {user ? (
-          <div>
+          <div className=" flex items-center">
             <NavLink
               className="mr-4"
               style={({ isActive }) => (isActive ? active : inactive)}
@@ -71,9 +72,30 @@ const Navbar = () => {
             >
               Add a Toy
             </NavLink>
-            <button onClick={handleSignOut} className="btn btn-sm">
-              Sign Out
-            </button>
+            <div className=" dropdown dropdown-bottom dropdown-end">
+              <div tabIndex={0} role="button" className="avatar m-1">
+                <div className="w-11 rounded-full  ring-2 ring-warning ring-offset-base-100 ring-offset-2">
+                  <img src={user.photoURL} />
+                </div>
+              </div>
+              <div
+                tabIndex={0}
+                className="dropdown-content z-30 card card-compact w-64 p-2 shadow bg-base-200 "
+              >
+                <div className="card-body items-center text-center">
+                  <img className="w-11 rounded-full " src={user.photoURL} />
+                  <h3 className="card-title">{user?.displayName}</h3>
+                  <p className="badge badge-neutral">{user?.email}</p>
+                  <button
+                    onClick={handleSignOut}
+                    className="btn btn-sm btn-outline"
+                  >
+                    <MdLogout />
+                    Logout
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <NavLink

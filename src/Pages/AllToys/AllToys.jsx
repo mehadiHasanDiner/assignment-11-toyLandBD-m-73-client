@@ -4,11 +4,11 @@ import AllToysRow from "./AllToysRow";
 
 const AllToys = () => {
   const allToysData = useLoaderData();
+  // console.log(allToysData);
 
   return (
     <div>
       <Banner>All Toy Page</Banner>
-      
 
       <div className="overflow-x-auto mt-6 border-2 rounded-lg">
         <table className="table">
@@ -25,13 +25,15 @@ const AllToys = () => {
           </thead>
 
           <tbody>
-            {
-              allToysData.map((toyData, index) =><AllToysRow key={toyData._id} toyData={toyData} index={index}></AllToysRow>)
-            }
+            {allToysData.map((toyData, index) => (
+              <AllToysRow
+                key={toyData._id}
+                toyData={toyData}
+                index={index}
+              ></AllToysRow>
+            ))}
             {/* row 1 */}
-            
           </tbody>
-          
         </table>
       </div>
     </div>
@@ -39,7 +41,6 @@ const AllToys = () => {
 };
 
 export default AllToys;
-
 
 // o	View Details button// o	Seller: (if available) show the name of the person who posted the toy
 // o	Toy Name
