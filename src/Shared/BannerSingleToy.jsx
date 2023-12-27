@@ -3,7 +3,7 @@ import bg2 from "../assets/bg2.jpg";
 
 const BannerSingleToy = ({ children }) => {
   return (
-    <div className="-mt-12">
+    <div className="mt-2">
       <div className="bg-white border-1 rounded  ">
         <div className="mx-16 h-28 md:h-48 lg:h-72 flex justify-center items-center relative">
           <div className="-mt-8">
