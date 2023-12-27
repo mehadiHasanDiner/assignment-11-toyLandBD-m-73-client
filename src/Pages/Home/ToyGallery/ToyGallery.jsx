@@ -9,7 +9,7 @@ const ToyGallery = () => {
     fetch("http://localhost:5000/toys")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setToys(data);
       });
   }, []);
@@ -17,7 +17,6 @@ const ToyGallery = () => {
   const settings = {
     dots: true,
     infinite: false,
-
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
