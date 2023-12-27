@@ -31,6 +31,9 @@ const Categories = () => {
 
   return (
     <div>
+      <p className="text-center font-bold text-xl mb-4">
+        Our All Products Based on Three Categories
+      </p>
       <div
         role="tablist"
         className="tabs  tabs-lifted tabs-lg bg-orange-400 relative z-20 rounded-t-xl "
@@ -70,6 +73,7 @@ const Categories = () => {
           Plush Toys
         </div>
       </div>
+
       <div className="toy-container  bg-orange-400 p-4 rounded-lg relative -top-3">
         {allCategories.map((categories) => (
           <CategoryCard

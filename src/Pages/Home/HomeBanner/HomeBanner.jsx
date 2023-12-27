@@ -12,8 +12,8 @@ const HomeBanner = () => {
         spaceBetween={50}
         slidesPerView={1}
         navigation={{
-          nextEl: ".button-next-slide",
-          prevEl: ".button-prev-slide",
+          nextEl: ".button-prev-slide",
+          prevEl: ".button-next-slide",
         }}
         modules={[Navigation]}
       >
