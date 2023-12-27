@@ -31,7 +31,7 @@ const Categories = () => {
 
   return (
     <div>
-      <p className="text-center font-bold text-xl mb-4">
+      <p className="text-center font-bold text-2xl mb-4 text-pink-600">
         Our All Products Based on Three Categories
       </p>
       <div
