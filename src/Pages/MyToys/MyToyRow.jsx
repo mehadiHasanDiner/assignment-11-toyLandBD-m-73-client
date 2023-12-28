@@ -5,8 +5,9 @@ import { Rating } from "@smastrom/react-rating";
 import { Link } from "react-router-dom";
 import "@smastrom/react-rating/style.css";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
-const MyToyRow = ({ toy, index }) => {
+const MyToyRow = ({ toy, index, load, setLoad }) => {
   const {
     _id,
     sellerName,
@@ -44,6 +45,7 @@ const MyToyRow = ({ toy, index }) => {
                 icon: "success",
               });
             }
+            setLoad(!load);
           });
       }
     });

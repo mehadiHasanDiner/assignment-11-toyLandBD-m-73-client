@@ -6,6 +6,7 @@ import BannerSingleToy from "../../Shared/BannerSingleToy";
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:5000/myToys/${user?.email}`)
@@ -14,7 +15,7 @@ const MyToys = () => {
         // console.log(data);
         setMyToys(data);
       });
-  }, [user]);
+  }, [user, load]);
 
   return (
     <>
@@ -35,7 +36,13 @@ const MyToys = () => {
 
           <tbody className="bg-base-100">
             {myToys?.map((toy, index) => (
-              <MyToyRow toy={toy} index={index} key={toy._id}></MyToyRow>
+              <MyToyRow
+                toy={toy}
+                index={index}
+                key={toy._id}
+                load={load}
+                setLoad={setLoad}
+              ></MyToyRow>
             ))}
           </tbody>
         </table>
