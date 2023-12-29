@@ -42,8 +42,7 @@ const AddAToy = () => {
     <div>
       <Banner>Add a Toy</Banner>
       <p className="text-center text-2xl font-bold mt-10 mb-4 text-red-800 bg-orange-200 p-2 rounded-md shadow-md">
-        {" "}
-        Submit your toy's details{" "}
+        Submit your toy's details
       </p>
       <div className="card  w-full shadow-2xl bg-base-200 border-2 border-orange-400">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body -mb-6">
@@ -226,7 +225,7 @@ const AddAToy = () => {
               <span className="label-text font-bold">Toy's Details</span>
             </label>
             <textarea
-              {...register("description", {
+              {...register("feedback", {
                 required: true,
               })}
               type="text"
