@@ -1,7 +1,22 @@
 import { useForm } from "react-hook-form";
-import { FaStar } from "react-icons/fa";
 import Swal from "sweetalert2";
+import Slider from "react-slick";
+import "./FeedbackSlider.css";
+import { useEffect, useState } from "react";
+
 const FeedbackForm = () => {
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/feedbacks")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setFeedbacks(data);
+      });
+  }, [load]);
+
   const {
     register,
     handleSubmit,
@@ -20,6 +35,7 @@ const FeedbackForm = () => {
       .then((data) => {
         console.log(data);
         if (data.insertedId) {
+          setLoad(!load);
           Swal.fire({
             title: "Good job!",
             text: "Your toy's data submitted successfully!",
@@ -29,8 +45,46 @@ const FeedbackForm = () => {
       });
     reset();
   };
+
+  const settings = {
+    dots: true,
+    lazyLoad: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 2,
+  };
+
   return (
     <>
+      <div>
+        <h2 className="text-center font-bold text-2xl text-pink-600 mb-4">
+          {" "}
+          Our Customer Valuable Feedbacks
+        </h2>
+        <Slider {...settings} className="w-3/4 mx-auto slick pl-6 pr-6">
+          {feedbacks.map((feedback) => (
+            <div className=" text-center w-3" key={feedback._id}>
+              <img
+                className="w-32 mx-auto mb-2"
+                src={
+                  feedback.url
+                    ? feedback?.url
+                    : "https://i.ibb.co/mH1ZxWq/user.png"
+                }
+              />
+              <p className="italic">{feedback?.feedback}</p>
+              <div className="divide-yellow-400 divide-y-2">
+                <p className="mb-3"></p>
+                <p className="font-bold">{feedback?.name}</p>
+              </div>
+              <p>{feedback?.profession}</p>
+            </div>
+          ))}
+        </Slider>
+      </div>
+
       <div className="mt-16 bg-base-100 font-serif">
         <h1 className="text-2xl text-center font-bold mb-3 text-pink-600">
           Give your Valuable Feedback

@@ -3,7 +3,6 @@ import Categories from "../ToysCategory/Categories";
 import HomeBanner from "../HomeBanner/HomeBanner";
 import ToyGallery from "../ToyGallery/ToyGallery";
 import FeedbackForm from "../FeedbackForm/FeedbackForm";
-import FeedbackSlider from "../FeedbackSlider/FeedbackSlider";
 
 const Home = () => {
   return (
@@ -11,7 +10,7 @@ const Home = () => {
       <HomeBanner></HomeBanner>
       <ToyGallery></ToyGallery>
       <Categories></Categories>
-      <FeedbackSlider></FeedbackSlider>
+      {/* <FeedbackSlider></FeedbackSlider> */}
       <FeedbackForm></FeedbackForm>
     </div>
   );
