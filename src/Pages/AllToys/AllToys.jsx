@@ -1,10 +1,42 @@
 import { useLoaderData } from "react-router-dom";
 import Banner from "../../Shared/Banner";
 import AllToysRow from "./AllToysRow";
+import { useEffect, useState } from "react";
 
 const AllToys = () => {
-  const allToysData = useLoaderData();
-  // console.log(allToysData);
+  const [toysData, setToysData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const { totalItems } = useLoaderData();
+
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const pageNumbers = [...Array(totalPages).keys()];
+
+  const options = [5, 10, 15, 20, 30];
+  const handleSelectChange = (event) => {
+    setItemsPerPage(parseInt(event.target.value));
+    setCurrentPage(0);
+  };
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/toys")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setToysData(data);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        `http://localhost:5000/toys?page=${currentPage}&limit=${itemsPerPage}`
+      );
+      const data = await response.json();
+      setToysData(data);
+    }
+    fetchData();
+  }, [currentPage, itemsPerPage]);
 
   return (
     <div>
@@ -25,7 +57,7 @@ const AllToys = () => {
           </thead>
 
           <tbody>
-            {allToysData.map((toyData, index) => (
+            {toysData.map((toyData, index) => (
               <AllToysRow
                 key={toyData._id}
                 toyData={toyData}
@@ -36,14 +68,37 @@ const AllToys = () => {
           </tbody>
         </table>
       </div>
+
+      {/* pagination */}
+      <div className="mt-4 text-center">
+        {pageNumbers.map((number) => (
+          <button
+            className={
+              currentPage === number
+                ? "btn btn-neutral m-[1px]"
+                : "btn btn-outline m-[1px]"
+            }
+            key={number}
+            onClick={() => setCurrentPage(number)}
+          >
+            {number + 1}
+          </button>
+        ))}
+        <select
+          className="select select-bordered ml-2"
+          value={itemsPerPage}
+          onChange={handleSelectChange}
+        >
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {" "}
+              {option}{" "}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };
 
 export default AllToys;
-
-// o	View Details button// o	Seller: (if available) show the name of the person who posted the toy
-// o	Toy Name
-// o	Sub-category
-// o	Price
-// o	Available Quantity
