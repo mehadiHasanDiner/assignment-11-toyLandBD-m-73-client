@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router-dom";
 import Banner from "../../Shared/Banner";
 import Swal from "sweetalert2";
+import useTitle from "../../hooks/useTitle";
 
 const UpdateMyToy = () => {
   const updatedToy = useLoaderData();
@@ -13,6 +14,8 @@ const UpdateMyToy = () => {
     // watch,
     formState: { errors },
   } = useForm();
+
+  useTitle(toyName);
 
   const onSubmit = (formData) => {
     fetch(`http://localhost:5000/updateToy/${_id}`, {

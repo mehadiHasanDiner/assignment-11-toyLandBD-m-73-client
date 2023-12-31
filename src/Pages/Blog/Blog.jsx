@@ -1,6 +1,8 @@
 import BannerSingleToy from "../../Shared/BannerSingleToy";
+import useTitle from "../../hooks/useTitle";
 
 const Blog = () => {
+  useTitle("Blogs");
   return (
     <div>
       <BannerSingleToy>My Blogs</BannerSingleToy>

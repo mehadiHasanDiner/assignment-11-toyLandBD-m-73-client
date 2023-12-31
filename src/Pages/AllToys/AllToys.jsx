@@ -2,12 +2,15 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "../../Shared/Banner";
 import AllToysRow from "./AllToysRow";
 import { useEffect, useState } from "react";
+import useTitle from "../../hooks/useTitle";
 
 const AllToys = () => {
   const [toysData, setToysData] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(20);
   const { totalItems } = useLoaderData();
+  useTitle("All Toys");
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
@@ -38,9 +41,28 @@ const AllToys = () => {
     fetchData();
   }, [currentPage, itemsPerPage]);
 
+  const handleSearch = () => {
+    fetch(`http://localhost:5000/toysTitle/${searchText}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToysData(data);
+      });
+  };
+
   return (
     <div>
       <Banner>All Toy Page</Banner>
+      <div className="mt-3 text-center">
+        <input
+          className="input input-bordered input-error  w-full max-w-xs"
+          type="text"
+          placeholder="search by toy name"
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button onClick={handleSearch} className="btn btn-error ml-1">
+          Search
+        </button>
+      </div>
 
       <div className="overflow-x-auto mt-6 border-2 rounded-lg">
         <table className="table">

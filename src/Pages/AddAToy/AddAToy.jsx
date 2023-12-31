@@ -4,11 +4,14 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FaStar } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useTitle from "../../hooks/useTitle";
 
 const AddAToy = () => {
   const { user } = useContext(AuthContext);
   const [rating, setRating] = useState(null);
   const [ratedColor, setRatedColor] = useState(null);
+
+  useTitle("Add a Toy");
 
   const {
     register,

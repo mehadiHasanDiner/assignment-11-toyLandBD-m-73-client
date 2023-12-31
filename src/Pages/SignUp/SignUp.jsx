@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useContext } from "react";
+import useTitle from "../../hooks/useTitle";
 
 const SignUp = () => {
   const { createUser, updatedUser } = useContext(AuthContext);
+  useTitle("Sign Up");
 
   const {
     register,

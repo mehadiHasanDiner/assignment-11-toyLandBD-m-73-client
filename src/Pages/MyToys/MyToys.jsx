@@ -2,11 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import MyToyRow from "./MyToyRow";
 import BannerSingleToy from "../../Shared/BannerSingleToy";
+import useTitle from "../../hooks/useTitle";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [load, setLoad] = useState(false);
+
+  useTitle("My Toys");
 
   useEffect(() => {
     fetch(`http://localhost:5000/myToys/${user?.email}`)
@@ -19,7 +22,7 @@ const MyToys = () => {
 
   return (
     <>
-      <BannerSingleToy>My Toys All Data</BannerSingleToy>
+      <BannerSingleToy>My Toys</BannerSingleToy>
       <div className="overflow-x-auto mt-6 border-2 rounded-lg">
         <table className="table">
           {/* head */}

@@ -3,12 +3,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const SignIn = () => {
   const { signedInUser, createUserByGoogle } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
+  useTitle("Sign In");
 
   const from = location.state?.from?.pathname || "/";
 

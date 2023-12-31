@@ -3,6 +3,7 @@ import BannerSingleToy from "../../Shared/BannerSingleToy";
 import { useLoaderData } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import useTitle from "../../hooks/useTitle";
 
 const SingleToy = () => {
   const singleToyData = useLoaderData();
@@ -16,6 +17,8 @@ const SingleToy = () => {
     url,
     rating,
   } = singleToyData || {};
+  useTitle(toyName);
+
   return (
     <div>
       <BannerSingleToy>{singleToyData.toyName.slice(0, 30)}</BannerSingleToy>
