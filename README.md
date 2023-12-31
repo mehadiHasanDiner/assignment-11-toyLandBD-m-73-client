@@ -20,8 +20,8 @@ Toy Land BD in the website where I have added some data from mongodb in category
 
 ## Live Link
 
-Client Side: Hosted in firebase -> [Toy Land BD](https://assignment-10-awesomechefs.web.app/)
-Server Side Github Link -> [Sever Github](https://github.com/mehadiHasanDiner/assignment-10-awesomeChefs-m-65-server)
+Client Side: Hosted in firebase -> [Toy Land BD](https://assignment-11-toylandbd-m-73.web.app/)
+Server Side Github Link -> [Sever Github](https://github.com/mehadiHasanDiner/assignment-11-toyLandBD-m-73-server)
 
 ## Resources & Credits
 
