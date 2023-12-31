@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const AllToys = () => {
   const [toysData, setToysData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(20);
   const { totalItems } = useLoaderData();
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
