@@ -14,7 +14,9 @@ const MyToys = () => {
   useTitle("My Toys");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myToys/${user?.email}`)
+    fetch(
+      `https://assignment-11-toy-land-bd-m-73-server.vercel.app/myToys/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

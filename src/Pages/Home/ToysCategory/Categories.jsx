@@ -12,7 +12,7 @@ const Categories = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/categories")
+    fetch("https://assignment-11-toy-land-bd-m-73-server.vercel.app/categories")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);

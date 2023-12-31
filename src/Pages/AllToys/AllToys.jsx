@@ -26,7 +26,7 @@ const AllToys = () => {
   };
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/toys")
+  //   fetch("https://assignment-11-toy-land-bd-m-73-server.vercel.app/toys")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setToysData(data);
@@ -36,7 +36,7 @@ const AllToys = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `http://localhost:5000/toys?page=${currentPage}&limit=${itemsPerPage}`
+        `https://assignment-11-toy-land-bd-m-73-server.vercel.app/toys?page=${currentPage}&limit=${itemsPerPage}`
       );
       const data = await response.json();
       setToysData(data);
@@ -46,7 +46,9 @@ const AllToys = () => {
   }, [currentPage, itemsPerPage]);
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/toysTitle/${searchText}`)
+    fetch(
+      `https://assignment-11-toy-land-bd-m-73-server.vercel.app/toysTitle/${searchText}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setToysData(data);

@@ -26,8 +26,11 @@ const router = createBrowserRouter([
       {
         path: "allToys",
         element: <AllToys></AllToys>,
-        // loader: () => fetch("http://localhost:5000/toys"),
-        loader: () => fetch("http://localhost:5000/totalToys"),
+        // loader: () => fetch("https://assignment-11-toy-land-bd-m-73-server.vercel.app/toys"),
+        loader: () =>
+          fetch(
+            "https://assignment-11-toy-land-bd-m-73-server.vercel.app/totalToys"
+          ),
       },
       {
         path: "toys/:id",
@@ -37,7 +40,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/toys/${params.id}`),
+          fetch(
+            `https://assignment-11-toy-land-bd-m-73-server.vercel.app/toys/${params.id}`
+          ),
       },
       {
         path: "updateToy/:id",
@@ -47,7 +52,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/updateToy/${params.id}`),
+          fetch(
+            `https://assignment-11-toy-land-bd-m-73-server.vercel.app/updateToy/${params.id}`
+          ),
       },
       {
         path: "blogs",
@@ -77,7 +84,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories/${params.id}`),
+          fetch(
+            `https://assignment-11-toy-land-bd-m-73-server.vercel.app/categories/${params.id}`
+          ),
       },
       {
         path: "signIn",

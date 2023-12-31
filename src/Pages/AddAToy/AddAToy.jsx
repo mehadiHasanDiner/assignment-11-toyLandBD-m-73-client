@@ -21,7 +21,7 @@ const AddAToy = () => {
   } = useForm();
 
   const onSubmit = (formData) => {
-    fetch("http://localhost:5000/toys", {
+    fetch("https://assignment-11-toy-land-bd-m-73-server.vercel.app/toys", {
       method: "POST",
       headers: {
         "content-type": "application/json",
