@@ -3,10 +3,16 @@ import "swiper/css";
 import { Navigation } from "swiper/modules";
 import "swiper/css/navigation";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const HomeBanner = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   return (
-    <div className="mb-12">
+    <div className="mb-12" data-aos="fade-left">
       <Swiper
         className="relative group"
         spaceBetween={50}

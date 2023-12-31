@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
     "@smastrom/react-rating": "^1.4.0",
+    "aos": "^2.3.4",
     "firebase": "^10.7.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

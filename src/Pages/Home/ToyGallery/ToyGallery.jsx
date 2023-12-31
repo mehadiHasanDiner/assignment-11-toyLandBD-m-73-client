@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ToyGallery = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   const [toys, setToys] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/toys")
@@ -55,7 +60,7 @@ const ToyGallery = () => {
 
   return (
     <>
-      <div className="my-12">
+      <div className="my-20" data-aos="flip-up">
         <p className="text-center font-bold text-2xl text-pink-600 mb-4">
           Our Latest Toys Photo Gallery
         </p>

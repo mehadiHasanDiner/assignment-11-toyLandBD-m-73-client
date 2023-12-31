@@ -3,10 +3,16 @@ import Swal from "sweetalert2";
 import Slider from "react-slick";
 import "./FeedbackSlider.css";
 import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const FeedbackForm = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:5000/feedbacks")
@@ -58,7 +64,7 @@ const FeedbackForm = () => {
 
   return (
     <>
-      <div>
+      <div data-aos="flip-left" className="mt-24">
         <h2 className="text-center font-bold text-2xl text-pink-600 mb-4">
           {" "}
           Our Customer Valuable Feedbacks
@@ -85,8 +91,8 @@ const FeedbackForm = () => {
         </Slider>
       </div>
 
-      <div className="mt-16 bg-base-100 font-serif">
-        <h1 className="text-2xl text-center font-bold mb-3 text-pink-600">
+      <div className="mt-24 bg-base-100" data-aos="zoom-in">
+        <h1 className="text-2xl text-center font-bold mb-6 text-pink-600">
           Give your Valuable Feedback
         </h1>
         <div className="toyCard-container items-center">

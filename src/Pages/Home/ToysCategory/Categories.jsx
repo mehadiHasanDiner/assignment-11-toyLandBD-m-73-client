@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import CategoryCard from "./CategoryCard";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [toysTab, setToysTab] = useState(["tab1"]);
+
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   useEffect(() => {
     fetch("http://localhost:5000/categories")
       .then((res) => res.json())
@@ -30,7 +37,7 @@ const Categories = () => {
   // console.log(allCategories);
 
   return (
-    <div>
+    <div data-aos="fade-right" className="mt-12">
       <p className="text-center font-bold text-2xl mb-4 text-pink-600">
         Our All Products Based on Three Categories
       </p>
