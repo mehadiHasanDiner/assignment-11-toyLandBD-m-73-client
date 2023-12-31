@@ -3,7 +3,7 @@ import bg2 from "../assets/bg2.png";
 
 const Banner = ({ children }) => {
   return (
-    <div className="-mt-12">
+    <div className="mt-2">
       <div className="bg-orange-200  ">
         <div className="mx-16 h-28 md:h-48 lg:h-80 flex justify-center items-center relative">
           <div className="-mt-8">

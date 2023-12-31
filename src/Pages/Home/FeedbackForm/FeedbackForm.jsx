@@ -65,11 +65,11 @@ const FeedbackForm = () => {
         </h2>
         <Slider {...settings} className="w-3/4 mx-auto slick pl-6 pr-6">
           {feedbacks.map((feedback) => (
-            <div className=" text-center w-3" key={feedback._id}>
+            <div className=" text-center w-3" key={feedback?._id}>
               <img
                 className="w-32 mx-auto mb-2"
                 src={
-                  feedback.url
+                  feedback?.url
                     ? feedback?.url
                     : "https://i.ibb.co/mH1ZxWq/user.png"
                 }
