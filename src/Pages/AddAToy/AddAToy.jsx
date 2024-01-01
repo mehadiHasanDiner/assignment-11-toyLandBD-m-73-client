@@ -21,6 +21,9 @@ const AddAToy = () => {
   } = useForm();
 
   const onSubmit = (formData) => {
+    const floatValue = parseFloat(formData.price);
+    formData.price = floatValue;
+    console.log(formData);
     fetch("https://assignment-11-toy-land-bd-m-73-server.vercel.app/toys", {
       method: "POST",
       headers: {
@@ -228,7 +231,7 @@ const AddAToy = () => {
               <span className="label-text font-bold">Toy's Details</span>
             </label>
             <textarea
-              {...register("feedback", {
+              {...register("description", {
                 required: true,
               })}
               type="text"
